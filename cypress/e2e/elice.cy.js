@@ -105,6 +105,8 @@ describe('elice login page', () => {
   });
 
   // 더보기 버튼
+  // 더보기 버튼으로 생긴 6개의 외부 계정 연동 버튼은
+  // 보기 쉽게할 내용이 없어 클래스 내용을 그대로 사용하였습니다.
   it('more check', () => {
     cy.visit(elice);
 

@@ -59,13 +59,11 @@ describe('inportant', () => {
     cy.visit(elice);
 
     cy.get('input[name="loginId"]').type('# 잘못된 아이디');
-
     cy.get('input[name="loginId"]').should('have.attr', 'aria-describedby', 'mui-1-helper-text');
 
     cy.get('input[name="loginId"]').clear();
 
     cy.get('input[name="loginId"]').type('# 올바른 아이디');
-
     cy.get('input[name="loginId"]').should('not.have.attr', 'aria-describedby');
   });
 
@@ -74,12 +72,36 @@ describe('inportant', () => {
     cy.visit(elice);
 
     cy.get('input[name="password"]').type('qwerasdf');
-
     cy.get('input[name="password"]').should('have.attr', 'type', 'password');
 
     cy.get('[aria-label="비밀번호 보기"]').click();
-
     cy.get('input[name="password"]').should('have.attr', 'type', 'text');
+  });
+
+  // 비밀번호 찾기
+  it('find password', () => {
+    cy.visit(elice);
+
+    cy.contains('비밀번호를 잊어버리셨나요?').click();
+    cy.url().should('include', 'https://accounts.elice.io/accounts/recover/password/find/email');
+  });
+
+  // 회원가입
+  it('sign in', () => {
+    cy.visit(elice);
+
+    cy.contains('회원가입').click();
+    cy.url().should('include', 'https://accounts.elice.io/accounts/signup/agreement');
+  });
+
+  // 아래 세 검사는 버튼 작동이 새창, 새탭에서 이루어지는데 접근 방법을 찾지 못 했습니다...
+
+  // 외부 계정 연동 버튼 검사
+  it('other account', () => {
+    cy.visit(elice);
+
+    cy.get('button[aria-label="Kakao"]').click();
+    cy.get('button[aria-label="Google"]').click();
   });
 
   // 더보기 검사
@@ -87,12 +109,29 @@ describe('inportant', () => {
     cy.visit(elice);
 
     cy.contains('더보기').click();
-
     cy.get('.css-1g0968k.ew0ch971.account--shared--social-button-enter-done').should('exist');
 
-    cy.contains('접기').click();
+    cy.get('button[aria-label="Microsoft"]').click();
+    cy.get('button[aria-label="Facebook"]').click();
+    cy.get('button[aria-label="Naver"]').click();
+    cy.get('button[aria-label="Github"]').click();
+    cy.get('button[aria-label="Apple"]').click();
+    cy.get('button[aria-label="Whalespace"]').click();
 
+    cy.contains('접기').click();
     cy.get('.css-1g0968k.ew0ch971.account--shared--social-button-enter-done').should('not.exist');
+  });
+
+  // 하단 버튼 검사
+  it('more check', () => {
+    cy.visit(elice);
+
+    cy.get('a[href="https://elice.io"]').click();
+    cy.contains('약관 안내').click();
+    cy.contains('개인정보처리방침').click();
+    cy.contains('업데이트 소식').click();
+    cy.contains('고객 문의').click();
+    cy.contains('서비스 상태').click();
   });
 });
   

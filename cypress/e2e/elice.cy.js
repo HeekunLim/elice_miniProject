@@ -30,6 +30,11 @@ describe('inportant', () => {
 
     cy.visit(elice);
 
+    // 로그인 테스트 용
+    // cy.get('input[name="loginId"]').type('아이디');
+    // cy.get('input[name="password"]').type('비밀번호');
+    // cy.contains('로그인').click();
+
     cy.wait('@logStatus').then((answerCode) => {
 
     const response = answerCode.response;

@@ -94,7 +94,7 @@ describe('elice login page', () => {
     cy.url().should('include', 'https://accounts.elice.io/accounts/signup/agreement');
   });
 
-  // 아래 세 검사는 버튼 작동이 새창, 새탭에서 이루어지는데 접근 방법을 찾지 못 했습니다...
+  // 아래 세 검사는 버튼 작동이 새창, 새탭에서 이루어지는데 접근 방법을 찾지 못 하였습니다...
 
   // 외부 계정 연동 버튼
   it('other account', () => {

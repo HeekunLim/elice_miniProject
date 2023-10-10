@@ -1,6 +1,6 @@
 var elice = 'https://accounts.elice.io'
 
-describe('inportant', () => {
+describe('elice login page', () => {
   // 1. 앱 로드가 정상적으로 되어야 한다.
   // 단순 사이트 접속으로만 테스트 하였습니다.
   it('connect', () => {
@@ -53,7 +53,7 @@ describe('inportant', () => {
 
   // 이 이후부터는 제가 추가적으로 실행한 테스트입니다.
 
-  // 아이디 유효성 검사
+  // 아이디 유효성
   // #이 들어간 부분에는 실제 아이디를 입력하여 사용하였습니다.
   it('account check', () => {
     cy.visit(elice);
@@ -67,7 +67,7 @@ describe('inportant', () => {
     cy.get('input[name="loginId"]').should('not.have.attr', 'aria-describedby');
   });
 
-  // 비밀번호 모자이크 검사
+  // 비밀번호 가리기
   it('secret check', () => {
     cy.visit(elice);
 
@@ -78,7 +78,7 @@ describe('inportant', () => {
     cy.get('input[name="password"]').should('have.attr', 'type', 'text');
   });
 
-  // 비밀번호 찾기
+  // 비밀번호 찾기 페이지
   it('find password', () => {
     cy.visit(elice);
 
@@ -86,7 +86,7 @@ describe('inportant', () => {
     cy.url().should('include', 'https://accounts.elice.io/accounts/recover/password/find/email');
   });
 
-  // 회원가입
+  // 회원가입 페이지
   it('sign in', () => {
     cy.visit(elice);
 
@@ -96,7 +96,7 @@ describe('inportant', () => {
 
   // 아래 세 검사는 버튼 작동이 새창, 새탭에서 이루어지는데 접근 방법을 찾지 못 했습니다...
 
-  // 외부 계정 연동 버튼 검사
+  // 외부 계정 연동 버튼
   it('other account', () => {
     cy.visit(elice);
 
@@ -104,7 +104,7 @@ describe('inportant', () => {
     cy.get('button[aria-label="Google"]').click();
   });
 
-  // 더보기 검사
+  // 더보기 버튼
   it('more check', () => {
     cy.visit(elice);
 
@@ -122,8 +122,8 @@ describe('inportant', () => {
     cy.get('.css-1g0968k.ew0ch971.account--shared--social-button-enter-done').should('not.exist');
   });
 
-  // 하단 버튼 검사
-  it('more check', () => {
+  // 하단(footer) 버튼
+  it('footer check', () => {
     cy.visit(elice);
 
     cy.get('a[href="https://elice.io"]').click();
